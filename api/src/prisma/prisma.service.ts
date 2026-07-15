@@ -1,19 +1,21 @@
 import { Injectable, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '../generated/prisma/client';
-import { PrismaBetterSqlite3 } from '@prisma/adapter-better-sqlite3';
 import { ConfigService } from '@nestjs/config';
+import { PrismaPg } from '@prisma/adapter-pg';
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
   constructor(private readonly config: ConfigService) {
-    const adapter = new PrismaBetterSqlite3({
-      url: config.get('DATABASE_URL'),
+    const connectionString = config.getOrThrow<string>('DATABASE_URL');
+
+    const adapter = new PrismaPg({
+      connectionString,
     });
 
     super({ adapter });
   }
 
-  onModuleInit() {
-    this.$connect();
+  async onModuleInit() {
+    await this.$connect();
   }
 }

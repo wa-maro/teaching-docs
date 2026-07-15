@@ -5,12 +5,7 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-}
-
-enum UserRole {
-  ADMIN @map("admin")
-  USER  @map("user")
+  provider = "postgresql"
 }
 
 model User {
@@ -38,9 +33,13 @@ model Session {
   lastUsedAt DateTime
   createdAt  DateTime  @default(now())
   revokedAt  DateTime?
-
-  user User @relation(fields: [userId], references: [id])
+  user       User      @relation(fields: [userId], references: [id])
 
   @@index([userId])
   @@map("sessions")
+}
+
+enum UserRole {
+  ADMIN @map("admin")
+  USER  @map("user")
 }
