@@ -15,6 +15,13 @@ import * as Joi from 'joi';
           .valid('development', 'production', 'test')
           .default('development'),
         PORT: Joi.number().port().default(3000),
+        DATABASE_URL: Joi.string()
+          .pattern(/^postgres(ql)?:\/\//)
+          .required()
+          .messages({
+            'string.pattern.base':
+              'DATABASE_URL must be a valid PostgreSQL connection string',
+          }),
         JWT_ACCESS_SECRET: Joi.string()
           .min(10)
           .required()
