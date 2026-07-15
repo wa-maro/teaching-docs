@@ -1,30 +1,76 @@
-# nestjs-starter-kit
+# TeachDocs — Smart Teaching & Lesson Planning Toolkit
 
-Opinionated starter kit for building scalable backend API. Provides a production-ready REST API with authentication, database integration, and a scalable modular architecture.
+<p align="center">
+  <img src="../brand-logo-2.png" alt="TeachDocs Logo" width="40%" />
+</p>
 
-**Features**
+<p align="center">
+  <em>
+    A workflow tool helping teachers turn curriculum into effective classroom practice.
+  </em>
+</p>
 
-- User registration
-- User login
-- Token refresh endpoint
-- Logout
-- Protected routes
+## Backend REST API Setup
 
-**Setup**
+### Installation
+
+Install the dependencies
 
 ```bash
-# Install dependencies
-npm install
+$ cd api
+$ npm install
+```
 
-# Copy environment variables
-cp .env.example .env
+Copy environment variables
 
-# Run database migrations
-npx prisma migrate dev
+```bash
+$ cp .env.example .env
+```
 
-# Generate Prisma Client
-npx prisma generate
+### Database & Prisma
 
-# Start the development server
-npm run start:dev
+To apply database migrations, run:
+
+```bash
+$ npx prisma migrate dev
+```
+
+`NB:` Make sure PostgreSQl is installed and running.
+
+To generate Prisma Client, run:
+
+```bash
+$ npx prisma generate
+```
+
+### Development
+
+To start a local development server, run:
+
+```bash
+$ npm run start:dev
+```
+
+### Building
+
+To build the project run:
+
+```bash
+$ npm run build
+```
+
+### Running unit tests
+
+For unit testing, run:
+
+```bash
+$ npm run test
+```
+
+### Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+$ npm run test:e2e
 ```
