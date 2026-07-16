@@ -6,6 +6,7 @@ import { AuthModule } from './features/auth/auth.module';
 import { UsersModule } from './features/users/users.module';
 import { LevelsModule } from './features/levels/levels.module';
 import { FormsModule } from './features/forms/forms.module';
+import { SubjectsModule } from './features/subjects/subjects.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -45,6 +46,7 @@ import * as Joi from 'joi';
     UsersModule,
     LevelsModule,
     FormsModule,
+    SubjectsModule,
   ],
   controllers: [],
   providers: [],
