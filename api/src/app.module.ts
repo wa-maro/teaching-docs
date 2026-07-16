@@ -8,6 +8,7 @@ import { LevelsModule } from './features/levels/levels.module';
 import { FormsModule } from './features/forms/forms.module';
 import { SubjectsModule } from './features/subjects/subjects.module';
 import { LevelSubjectsModule } from './features/level_subjects/level_subjects.module';
+import { FormSubjectsModule } from './features/form_subjects/form_subjects.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -49,6 +50,7 @@ import * as Joi from 'joi';
     FormsModule,
     SubjectsModule,
     LevelSubjectsModule,
+    FormSubjectsModule,
   ],
   controllers: [],
   providers: [],
