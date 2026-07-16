@@ -8,6 +8,11 @@ datasource db {
   provider = "postgresql"
 }
 
+enum UserRole {
+  ADMIN @map("admin")
+  USER  @map("user")
+}
+
 model User {
   id           String    @id @default(uuid())
   username     String    @unique
@@ -39,7 +44,16 @@ model Session {
   @@map("sessions")
 }
 
-enum UserRole {
-  ADMIN @map("admin")
-  USER  @map("user")
+enum LevelChoice {
+  ORDINARY @map("ordinary")
+  ADVANCED @map("advanced")
+}
+
+model Level {
+  id        String      @id @default(uuid())
+  name      LevelChoice @unique
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+
+  @@map("levels")
 }
