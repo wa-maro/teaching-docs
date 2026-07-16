@@ -54,6 +54,28 @@ model Level {
   name      LevelChoice @unique
   createdAt DateTime    @default(now())
   updatedAt DateTime    @updatedAt
+  forms     Form[]
 
   @@map("levels")
+}
+
+enum FormChoice {
+  ONE   @map("one")
+  TWO   @map("two")
+  THREE @map("three")
+  FOUR  @map("four")
+  FIVE  @map("five")
+  SIX   @map("six")
+}
+
+model Form {
+  id        String     @id @default(uuid())
+  levelId   String
+  name      FormChoice
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  level     Level      @relation(fields: [levelId], references: [id])
+
+  @@unique([levelId, name])
+  @@map("forms")
 }
