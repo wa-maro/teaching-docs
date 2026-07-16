@@ -79,3 +79,21 @@ model Form {
   @@unique([levelId, name])
   @@map("forms")
 }
+
+enum LanguageChoice {
+  SW
+  EN
+  FR
+  ZH
+  AR
+}
+
+model Subject {
+  id                     String         @id @default(uuid())
+  name                   String         @unique
+  instructional_language LanguageChoice @default(EN)
+  createdAt              DateTime       @default(now())
+  updatedAt              DateTime       @updatedAt
+
+  @@map("subjects")
+}
