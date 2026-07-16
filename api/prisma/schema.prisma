@@ -50,11 +50,12 @@ enum LevelChoice {
 }
 
 model Level {
-  id        String      @id @default(uuid())
-  name      LevelChoice @unique
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
-  forms     Form[]
+  id            String         @id @default(uuid())
+  name          LevelChoice    @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  forms         Form[]
+  levelSubjects LevelSubject[]
 
   @@map("levels")
 }
@@ -94,6 +95,21 @@ model Subject {
   instructional_language LanguageChoice @default(EN)
   createdAt              DateTime       @default(now())
   updatedAt              DateTime       @updatedAt
+  levelSubjects          LevelSubject[]
 
   @@map("subjects")
+}
+
+model LevelSubject {
+  id        String   @id @default(uuid())
+  levelId   String
+  subjectId String
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  level     Level    @relation(fields: [levelId], references: [id])
+  subject   Subject  @relation(fields: [subjectId], references: [id])
+
+  @@unique([levelId, subjectId])
+  @@map("level_subjects")
 }
