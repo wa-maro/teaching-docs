@@ -70,12 +70,13 @@ enum FormChoice {
 }
 
 model Form {
-  id        String     @id @default(uuid())
-  levelId   String
-  name      FormChoice
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  level     Level      @relation(fields: [levelId], references: [id])
+  id           String        @id @default(uuid())
+  levelId      String
+  name         FormChoice
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  level        Level         @relation(fields: [levelId], references: [id])
+  formSubjects FormSubject[]
 
   @@unique([levelId, name])
   @@map("forms")
@@ -101,15 +102,35 @@ model Subject {
 }
 
 model LevelSubject {
-  id        String   @id @default(uuid())
-  levelId   String
-  subjectId String
-  code      String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  level     Level    @relation(fields: [levelId], references: [id])
-  subject   Subject  @relation(fields: [subjectId], references: [id])
+  id           String        @id @default(uuid())
+  levelId      String
+  subjectId    String
+  code         String        @unique
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  level        Level         @relation(fields: [levelId], references: [id])
+  subject      Subject       @relation(fields: [subjectId], references: [id])
+  formSubjects FormSubject[]
 
   @@unique([levelId, subjectId])
   @@map("level_subjects")
+}
+
+enum SubjectTypeChoice {
+  COMPULSORY @map("compulsory")
+  OPTIONAL   @map("optional")
+}
+
+model FormSubject {
+  id             String            @id @default(uuid())
+  formId         String
+  levelSubjectId String
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  form           Form              @relation(fields: [formId], references: [id])
+  levelSubject   LevelSubject      @relation(fields: [levelSubjectId], references: [id])
+  type           SubjectTypeChoice @default(COMPULSORY)
+
+  @@unique([formId, levelSubjectId])
+  @@map("form_subjects")
 }
