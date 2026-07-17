@@ -4,11 +4,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { SecurityModule } from './security/security.module';
 import { AuthModule } from './features/auth/auth.module';
 import { UsersModule } from './features/users/users.module';
-import { LevelsModule } from './features/levels/levels.module';
-import { FormsModule } from './features/forms/forms.module';
-import { SubjectsModule } from './features/subjects/subjects.module';
-import { LevelSubjectsModule } from './features/level_subjects/level_subjects.module';
-import { FormSubjectsModule } from './features/form_subjects/form_subjects.module';
+import { AcademicsModule } from './features/academics/academics.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -46,11 +42,7 @@ import * as Joi from 'joi';
     SecurityModule,
     AuthModule,
     UsersModule,
-    LevelsModule,
-    FormsModule,
-    SubjectsModule,
-    LevelSubjectsModule,
-    FormSubjectsModule,
+    AcademicsModule,
   ],
   controllers: [],
   providers: [],

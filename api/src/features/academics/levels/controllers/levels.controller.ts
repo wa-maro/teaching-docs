@@ -1,5 +1,5 @@
 import { Controller } from '@nestjs/common';
-import { LevelsService } from './levels.service';
+import { LevelsService } from '../levels.service';
 
 @Controller('levels')
 export class LevelsController {

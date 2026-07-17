@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { FormsService } from './forms.service';
-import { FormsController } from './forms.controller';
+import { FormsController } from './controllers/forms.controller';
 
 @Module({
   providers: [FormsService],

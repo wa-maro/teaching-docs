@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from '../../prisma/prisma.service';
+import { PrismaService } from '../../../prisma/prisma.service';
 
 @Injectable()
-export class LevelSubjectsService {
+export class FormsService {
   constructor(private readonly prisma: PrismaService) {}
 }

@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { LevelSubjectsService } from './level_subjects.service';
-import { LevelSubjectsController } from './level_subjects.controller';
+import { LevelSubjectsController } from './controllers/level_subjects.controller';
 
 @Module({
   providers: [LevelSubjectsService],
