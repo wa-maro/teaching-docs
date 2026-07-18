@@ -137,14 +137,28 @@ model FormSubject {
 }
 
 model Syllabus {
-  id             String       @id @default(uuid())
-  levelSubjectId String
-  publishedYear  Int
-  revisedYear    Int?
-  createdAt      DateTime     @default(now())
-  updatedAt      DateTime     @updatedAt
-  levelSubject   LevelSubject @relation(fields: [levelSubjectId], references: [id])
+  id              String           @id @default(uuid())
+  levelSubjectId  String
+  publishedYear   Int
+  revisedYear     Int?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  levelSubject    LevelSubject     @relation(fields: [levelSubjectId], references: [id])
+  mainCompetences MainCompetence[]
 
   @@unique([levelSubjectId, publishedYear])
   @@map("syllabi")
+}
+
+model MainCompetence {
+  id         String   @id @default(uuid())
+  syllabusId String
+  position   Int
+  content    String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  syllabus   Syllabus @relation(fields: [syllabusId], references: [id])
+
+  @@unique([syllabusId, position])
+  @@map("main_competences")
 }
