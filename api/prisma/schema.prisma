@@ -151,14 +151,28 @@ model Syllabus {
 }
 
 model MainCompetence {
-  id         String   @id @default(uuid())
-  syllabusId String
-  position   Int
-  content    String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  syllabus   Syllabus @relation(fields: [syllabusId], references: [id])
+  id                  String               @id @default(uuid())
+  syllabusId          String
+  position            Int
+  content             String
+  createdAt           DateTime             @default(now())
+  updatedAt           DateTime             @updatedAt
+  syllabus            Syllabus             @relation(fields: [syllabusId], references: [id])
+  specificCompetences SpecificCompetence[]
 
   @@unique([syllabusId, position])
   @@map("main_competences")
+}
+
+model SpecificCompetence {
+  id               String         @id @default(uuid())
+  mainCompetenceId String
+  position         Int
+  content          String
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  mainCompetence   MainCompetence @relation(fields: [mainCompetenceId], references: [id])
+
+  @@unique([mainCompetenceId, position])
+  @@map("specific_competences")
 }
