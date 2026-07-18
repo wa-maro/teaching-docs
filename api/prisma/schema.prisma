@@ -111,6 +111,7 @@ model LevelSubject {
   level        Level         @relation(fields: [levelId], references: [id])
   subject      Subject       @relation(fields: [subjectId], references: [id])
   formSubjects FormSubject[]
+  syllabi      Syllabus[]
 
   @@unique([levelId, subjectId])
   @@map("level_subjects")
@@ -125,12 +126,25 @@ model FormSubject {
   id             String            @id @default(uuid())
   formId         String
   levelSubjectId String
+  subjectType    SubjectTypeChoice @default(COMPULSORY)
   createdAt      DateTime          @default(now())
   updatedAt      DateTime          @updatedAt
   form           Form              @relation(fields: [formId], references: [id])
   levelSubject   LevelSubject      @relation(fields: [levelSubjectId], references: [id])
-  type           SubjectTypeChoice @default(COMPULSORY)
 
   @@unique([formId, levelSubjectId])
   @@map("form_subjects")
+}
+
+model Syllabus {
+  id             String       @id @default(uuid())
+  levelSubjectId String
+  publishedYear  Int
+  revisedYear    Int?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  levelSubject   LevelSubject @relation(fields: [levelSubjectId], references: [id])
+
+  @@unique([levelSubjectId, publishedYear])
+  @@map("syllabi")
 }
