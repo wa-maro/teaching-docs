@@ -5,6 +5,7 @@ import { SecurityModule } from './security/security.module';
 import { AuthModule } from './features/auth/auth.module';
 import { UsersModule } from './features/users/users.module';
 import { AcademicsModule } from './features/academics/academics.module';
+import { SyllabusModule } from './features/syllabus/syllabus.module';
 import * as Joi from 'joi';
 
 @Module({
@@ -43,6 +44,7 @@ import * as Joi from 'joi';
     AuthModule,
     UsersModule,
     AcademicsModule,
+    SyllabusModule,
   ],
   controllers: [],
   providers: [],
