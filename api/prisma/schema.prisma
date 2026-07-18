@@ -83,20 +83,20 @@ model Form {
 }
 
 enum LanguageChoice {
-  SW
-  EN
-  FR
-  ZH
-  AR
+  SW @map("sw")
+  EN @map("en")
+  FR @map("fr")
+  ZH @map("zh")
+  AR @map("ar")
 }
 
 model Subject {
-  id                     String         @id @default(uuid())
-  name                   String         @unique
-  instructional_language LanguageChoice @default(EN)
-  createdAt              DateTime       @default(now())
-  updatedAt              DateTime       @updatedAt
-  levelSubjects          LevelSubject[]
+  id                    String         @id @default(uuid())
+  name                  String         @unique
+  instructionalLanguage LanguageChoice @default(EN)
+  createdAt             DateTime       @default(now())
+  updatedAt             DateTime       @updatedAt
+  levelSubjects         LevelSubject[]
 
   @@map("subjects")
 }
