@@ -1,0 +1,9 @@
+<div class="flex h-16 items-center border-b border-slate-200 px-6">
+  <h1 class="text-xl font-bold text-slate-800">TeachDocs</h1>
+</div>
+
+<mat-nav-list class="px-3 py-4">
+  @for (link of links(); track $index) {
+    <app-sidebar-link-item [navLinkItem]="link" />
+  }
+</mat-nav-list>
