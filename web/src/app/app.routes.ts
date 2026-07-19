@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { AdminLayout } from './layouts/admin-layout/admin-layout';
+import { AdminDashboard } from './features/admin-dashboard/admin-dashboard';
 
 export const routes: Routes = [
   {
@@ -7,6 +8,13 @@ export const routes: Routes = [
     component: AdminLayout,
 
     children: [
+      {
+        path: 'dashboard',
+        component: AdminDashboard,
+        data: {
+          title: 'Dashboard',
+        },
+      },
       {
         path: 'subjects',
         loadChildren: () =>

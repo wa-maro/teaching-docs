@@ -20,6 +20,11 @@ export class AdminLayout {
   protected title = '';
   protected links: NavLinkItem[] = [
     {
+      url: '/admin/dashboard',
+      icon: 'dashboard',
+      text: 'Dashboard',
+    },
+    {
       url: '/admin/subjects',
       icon: 'menu_book',
       text: 'Subjects',
