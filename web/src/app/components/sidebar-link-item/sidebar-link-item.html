@@ -1,0 +1,13 @@
+<a
+  mat-list-item
+  [routerLink]="navLinkItem().url"
+  routerLinkActive="bg-blue-50 text-blue-600 font-medium"
+  [routerLinkActiveOptions]="{ exact: true }"
+  class="mb-1 rounded-lg transition-all hover:bg-slate-100"
+>
+  <div class="flex items-center gap-3">
+    <mat-icon matListItemIcon>{{ navLinkItem().icon }}</mat-icon>
+
+    <span matListItemTitle>{{ navLinkItem().text }}</span>
+  </div>
+</a>
